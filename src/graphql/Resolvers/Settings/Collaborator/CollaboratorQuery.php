@@ -14,6 +14,7 @@ class CollaboratorQuery
     {
         return [
             'collaboratorById' => [
+                'description' => "Finds a collaborator using its unique identifier.",
                 'type' => new NonNull(Types::get(Collaborator::class)),
                 'args' => [
                     'id' => new NonNull(Types::id())
@@ -22,6 +23,7 @@ class CollaboratorQuery
                     => $context->useCases->collaborator->findById->handle($args['id'])
             ],
             'collaborators' => [
+                'description' => "Finds all collaborators of the current user (tenant identifier).",
                 'type' => new NonNull(new ListOfType(new NonNull(Types::get(Collaborator::class)))),
                 'resolve' => static fn ($rootValue, $args, RequestContext $context)
                     => $context->useCases->collaborator->findMany->handle()

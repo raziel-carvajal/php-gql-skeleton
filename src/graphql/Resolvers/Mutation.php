@@ -18,6 +18,7 @@ final class Mutation extends ObjectType
             'fields' => function () {
                 return [
                     'unitTypeCreate' => [
+                        'description' => "Creates a new unit type using an string as its name and avoids creating duplicates in case the mutation takes place using an existing unit type",
                         'type' => new NonNull(Types::get(UnitType::class)),
                         'args' => [
                             'input' => new NonNull(Types::get(UnitTypeCreateInput::class))
