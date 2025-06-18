@@ -21,15 +21,15 @@ class UnitTypeQuery
                 ],
                 'resolve' => static fn ($rootValue, $args, RequestContext $context)
                 => $context->useCases->unitType
-                    ->unitTypeById
-                    ->handle($args['id'], $context)
+                    ->findById
+                    ->handle($args['id'])
             ],
             'unitTypes' => [
                 'type' => new NonNull(new ListOfType(Types::get(UnitType::class))),
                 'resolve' => static fn ($rootValue, $args, RequestContext $context)
                 => $context->useCases->unitType
-                    ->unitTypesFindMany
-                    ->handle($context)
+                    ->findMany
+                    ->handle()
             ],
         ];
     }
